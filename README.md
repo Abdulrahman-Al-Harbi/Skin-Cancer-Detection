@@ -1,29 +1,38 @@
 # Skin Cancer Detection Using Fusion Deep Learning
 
-A deep learning framework for automated skin cancer classification using **clinical skin images** and **patient clinical information**.
+A deep learning framework for automated **multi-class skin cancer classification** using clinical skin images and patient clinical information.
 
-The proposed model combines **EfficientNetB3**, **Gray-World Color Constancy**, and **Squeeze-and-Excitation (SE) attention** to improve classification performance on the **PAD-UFES-20** dataset. The model is evaluated using **patient-level stratified 5-fold cross-validation** with ensemble prediction to prevent data leakage and provide reliable performance estimates.
+The proposed model combines **EfficientNetB3**, **Gray-World Color Constancy**, and **Squeeze-and-Excitation (SE) Attention** to improve classification performance on the **PAD-UFES-20** dataset. The model is evaluated using **patient-level stratified 5-fold cross-validation** with ensemble prediction to prevent data leakage and provide reliable performance estimates.
 
 ---
 
-## Features
+# Project Poster
+
+> Click the poster below to view the full PDF.
+
+[![Project Poster](poster/skin_cancer_poster.png)](poster/skin_cancer_poster.pdf)
+
+---
+
+# Features
 
 - EfficientNetB3 transfer learning
 - Gray-World color constancy preprocessing
 - Fusion of image features and clinical metadata
-- Squeeze-and-Excitation (SE) attention
+- Squeeze-and-Excitation (SE) Attention
 - Patient-level stratified 5-fold cross-validation
 - Ensemble prediction
 - Class imbalance handling using weighted loss
+- Early stopping and learning rate scheduling
 - Performance evaluation using ROC curves and confusion matrix
 
 ---
 
-## Dataset
+# Dataset
 
 This project uses the **PAD-UFES-20** skin cancer dataset.
 
-### Dataset Summary
+## Dataset Summary
 
 - **2,298** smartphone-acquired clinical images
 - **1,373** patients
@@ -39,53 +48,56 @@ This project uses the **PAD-UFES-20** skin cancer dataset.
 | Squamous Cell Carcinoma (SCC) | 192 |
 | Melanoma (MEL) | 52 |
 
-The complete dataset can be downloaded from Kaggle:
+The original dataset is available on Kaggle:
 
 https://www.kaggle.com/datasets/mahdavi1202/skin-cancer
 
-> **Note:** The clinical images are not included in this repository because of their large size. Only the required metadata file is provided.
+> **Note:** Clinical images are **not included** in this repository because of their large size. Only the metadata file required to run the project is provided.
 
 ---
 
-## Model Architecture
+# Model Architecture
 
-The proposed framework consists of two branches:
+The proposed framework consists of two branches.
 
-### Image Branch
-- Gray-World color constancy
+## Image Branch
+
+- Gray-World Color Constancy
 - EfficientNetB3 backbone
-- SE attention
-- Image feature extraction
+- Squeeze-and-Excitation (SE) Attention
+- Deep image feature extraction
 
-### Clinical Branch
+## Clinical Branch
+
 - Patient clinical metadata
 - Fully connected neural network
 - Clinical feature embedding
 
-### Fusion
+## Feature Fusion
+
 - Feature concatenation
-- SE attention
+- SE Attention
 - Fully connected classifier
-- Softmax output for six skin lesion classes
+- Softmax output layer for six skin lesion classes
 
 ---
 
-## Training Strategy
+# Training Strategy
 
 - Transfer learning with EfficientNetB3
-- Fine-tuning of the upper layers
+- Fine-tuning of upper network layers
 - Patient-level Stratified Group 5-Fold Cross Validation
 - Label smoothing
 - Class-weighted loss
 - Early stopping
 - Learning rate reduction
-- Ensemble averaging of five fold models
+- Ensemble averaging across the five trained fold models
 
 ---
 
-## Results
+# Results
 
-### Overall Performance
+## Overall Performance
 
 | Metric | Score |
 |--------|-------|
@@ -95,7 +107,7 @@ The proposed framework consists of two branches:
 | Weighted F1-score | **72.74%** |
 | Macro F1-score | **62.43%** |
 
-### Per-class Performance
+## Per-class Performance
 
 | Class | Precision | Recall | F1-score |
 |------|---------:|-------:|---------:|
@@ -108,24 +120,38 @@ The proposed framework consists of two branches:
 
 ---
 
-## Repository Structure
+## Confusion Matrix
+
+![Confusion Matrix](results/confusion_matrix.png)
+
+---
+
+## ROC Curve
+
+![ROC Curve](results/roc_curve.png)
+
+---
+
+# Repository Structure
 
 ```text
 skin_cancer_detection/
 │
 ├── README.md
+├── LICENSE
 │
-├── research_paper/
-│   └── skin_cancer_research_paper.pdf
-│
-├── poster/
-│   └── skin_cancer_poster.pdf
+├── data/
+│   └── metadata.csv
 │
 ├── notebooks/
 │   └── skin_cancer_detection_model.ipynb
 │
-├── data/
-│   └── metadata.csv
+├── poster/
+│   ├── skin_cancer_poster.pdf
+│   └── skin_cancer_poster.png
+│
+├── research_paper/
+│   └── skin_cancer_research_paper.pdf
 │
 └── results/
     ├── confusion_matrix.png
@@ -136,46 +162,47 @@ skin_cancer_detection/
 
 ---
 
-## Running the Project
+# Running the Project
 
-1. Download the PAD-UFES-20 dataset.
-2. Place the dataset inside the `data/` directory.
-3. Open:
+1. Download the PAD-UFES-20 dataset from Kaggle.
+2. Extract the dataset.
+3. Place the dataset inside the `data/` directory.
+4. Open:
 
-```
+```text
 notebooks/skin_cancer_detection_model.ipynb
 ```
 
-4. Update the dataset paths if necessary.
-5. Run the notebook cells sequentially.
+5. Update the dataset paths if necessary.
+6. Run all notebook cells sequentially.
 
 ---
 
-## Research Paper
+# Research Paper
 
-The complete research paper is available in:
+The complete research paper describing the proposed methodology and experimental evaluation is available in:
 
-```
+```text
 research_paper/
 ```
 
 ---
 
-## Poster
+# Poster
 
-The project poster is available in:
+The project poster summarizing the methodology and experimental results is available in:
 
-```
+```text
 poster/
 ```
 
 ---
 
-## Results
+# Results
 
-The generated evaluation files are available in:
+The evaluation outputs are available in:
 
-```
+```text
 results/
 ```
 
@@ -188,6 +215,51 @@ Including:
 
 ---
 
-## Author
+# Technologies Used
+
+- Python
+- TensorFlow
+- Keras
+- EfficientNetB3
+- Scikit-learn
+- Pandas
+- NumPy
+- Matplotlib
+- OpenCV
+- Jupyter Notebook
+
+---
+
+# Dataset
+
+This project uses the **PAD-UFES-20** dataset.
+
+Original dataset:
+
+https://www.kaggle.com/datasets/mahdavi1202/skin-cancer
+
+---
+
+# Notes
+
+- Clinical images are **not included** in this repository because of their large size.
+- Only the metadata file and project source code are included.
+- Please download the original dataset from Kaggle before running the notebook.
+
+---
+
+# Citation
+
+If you use this repository in your research or academic work, please cite the original **PAD-UFES-20** dataset and the corresponding publication.
+
+---
+
+# License
+
+This project is distributed under the **MIT License**. See the `LICENSE` file for more details.
+
+---
+
+# Author
 
 **Abdulrahman Alharbi**
